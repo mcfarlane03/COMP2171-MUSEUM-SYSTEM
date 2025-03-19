@@ -52,33 +52,6 @@ public class DatabaseController {
 
     }
 
-    public static void AddDonor(String name, int ID, String contact, String ArtifactsDonated, int numArtifacts)
-            throws IOException {
-        String text;
 
-        File file = new File("donor_list.txt");
-        FileWriter fileWriter = new FileWriter(file, file.exists());
-        BufferedWriter output = new BufferedWriter(fileWriter);
-
-        String[] names = name.split(" ");
-        String[] artifacts = ArtifactsDonated.split(",");
-        text = names[0] + "_" + names[1] + " " + ID + " " + contact + " "
-                + Arrays.toString(artifacts).replaceAll(" ", "") + " "
-                + numArtifacts;
-
-        output.write(text);
-
-        // adding new line for next record to be appended:
-        if (file.exists())
-            output.newLine();
-
-        output.close();
-        fileWriter.close();
-
-        if (file.exists())
-            System.out.println("Text has been appended to the file: donor_list.txt");
-        else
-            System.out.println("Text has been written to a new file: donor_list.txt");
-    }
 
 }

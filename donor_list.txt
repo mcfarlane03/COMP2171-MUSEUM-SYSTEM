@@ -1,7 +1,0 @@
-Michael_Keeton 655865 25688631 knife 1
-Ray_Ban 54826 584515148 bowl 2
-Alex_Mack 68585 15485151 spear 1
-Lincoln_Kennedy 528527 78645534 key 1
-John_Doe 245258 148955445 [key,knife,sword] 1
-Jaden_Dixon 24543 4545432 [book] 1
-Peter_Eater 45422 446654 [key,chain] 2

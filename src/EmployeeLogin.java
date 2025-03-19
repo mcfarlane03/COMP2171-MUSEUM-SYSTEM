@@ -91,7 +91,7 @@ public class EmployeeLogin extends JFrame {
                     String line;
                     try {
                         // Create a File object with the given file name:
-                        File file = new File("C:\\Users\\Lui\\OneDrive\\Desktop\\NATHAN_COMP2140_Software_Project-main\\COMP2140_Software_Project-main\\employee_details.txt");
+                        File file = new File("employee_details.txt");
 
                         // Check if the file exists:
                         if (!file.exists())
@@ -106,23 +106,22 @@ public class EmployeeLogin extends JFrame {
 
                         // loops through file
                         while ((line = bufferedReader.readLine()) != null) {
-                            String[] login = line.split(" ");
-                            int check = Integer.parseInt(login[3]);
+                            String[] loginStr = line.split(" ");
+                            int check = Integer.parseInt(loginStr[3]);
                             // Compares fields from text to fields from JText & PasswordFields:
-                            if (login[1].equals("Manager") && check == Id && login[4].equals(userHashHex)) {
+                            if (loginStr[1].equals("Manager") && check == Id && loginStr[4].equals(userHashHex)) {
                                 new ManagerMenu();
-                                JOptionPane.showMessageDialog(null, "User with ID#: [" + login[3] + "] logged in");
+                                JOptionPane.showMessageDialog(null, "User with ID#: [" + loginStr[3] + "] logged in");
                                 // System.out.println("SUCCESSFUL MANAGER");
                                 setVisible(false);
                                 bufferedReader.close();
                                 flag = 0;
                                 manager_flag = true;
                             }
-                            if (login[1].equals("Entry_Level_Employee") && check == Id
-                                    && login[4].equals(userHashHex)) {
+                            if (loginStr[1].equals("Entry_Level_Employee") && check == Id && loginStr[4].equals(userHashHex)) {
                                 new EmployeeMenu();
                                 // System.out.println("SUCCESSFUL EMPLOYEE");
-                                JOptionPane.showMessageDialog(null, "User with ID#: [" + login[3] + "] logged in");
+                                JOptionPane.showMessageDialog(null, "User with ID#: [" + loginStr[3] + "] logged in");
                                 setVisible(false);
                                 bufferedReader.close();
                                 flag = 0;

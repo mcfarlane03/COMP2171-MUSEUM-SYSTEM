@@ -15,8 +15,6 @@ class ManagerMenu extends JFrame {
       JMenuItem view = new JMenuItem("View Museum Artifact List");
       menu.add(view);
 
-      JMenuItem view_donor = new JMenuItem("View Donor Contact List");
-      menu.add(view_donor);
 
       JMenuItem add = new JMenuItem("Add an Entry Employee");
       menu.add(add);
@@ -38,12 +36,6 @@ class ManagerMenu extends JFrame {
          }
       });
 
-      view_donor.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-            new ViewContactList();
-            setVisible(false);
-         }
-      });
 
       add.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {

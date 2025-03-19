@@ -5,4 +5,46 @@
       <module fileurl="file://$PROJECT_DIR$/COMP2171-MUSEUM-SYSTEM.iml" filepath="$PROJECT_DIR$/COMP2171-MUSEUM-SYSTEM.iml" />
     </modules>
   </component>
+  <component>
+    <dependencies>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>kernel</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>io</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>layout</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>forms</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>pdfa</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>pdftest</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+    </dependencies>
+    <repositories>
+      <repository>
+        <id>itext</id>
+        <name>iText Repository - releases</name>
+        <url>https://repo.itextsupport.com/releases</url>
+      </repository>
+    </repositories>
+  </component>
+
 </project>

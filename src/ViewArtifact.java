@@ -36,6 +36,7 @@ public class ViewArtifact extends JFrame {
     public JButton sort_price = new JButton("Sort by Price");
     public JButton sort_weight = new JButton("Sort by Weight");
     public JButton sort_date = new JButton("Sort by the Date of Arrival");
+    public JButton export_results = new JButton("Export Results");
     public JButton Close = new JButton("Close");
     public JButton Reset = new JButton("Reset");
 
@@ -106,8 +107,10 @@ public class ViewArtifact extends JFrame {
         sort_price.addActionListener(new Sortbyprice());
         sort_weight.addActionListener(new Sortbyweight());
         sort_date.addActionListener(new SortDateListener());
+        export_results.addActionListener(new exportResultsListener());
         Close.addActionListener(new CloseButtonListener());
         Reset.addActionListener(new ResetListener());
+
 
         sort_name.setOpaque(true);
         sort_name.setContentAreaFilled(true);
@@ -181,7 +184,7 @@ public class ViewArtifact extends JFrame {
     // }
 
     private void showTable(ArrayList<Artifact> alist) {
-        if (alist.size() > 0) {
+        if (!alist.isEmpty()) {
             for (Artifact list : alist)
                 addToTable(list);
         }
@@ -197,7 +200,7 @@ public class ViewArtifact extends JFrame {
     // listener for balance sort button
     private class Sortbyprice implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            Collections.sort(alist, new sortPrice());
+            alist.sort(new sortPrice());
             model.setRowCount(0);
             showTable(alist);
         }
@@ -206,7 +209,7 @@ public class ViewArtifact extends JFrame {
     // listener for name sort button
     private class SortNameListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            Collections.sort(alist, new nameCompare());
+            alist.sort(new nameCompare());
             model.setRowCount(0);
             showTable(alist);
         }
@@ -214,7 +217,7 @@ public class ViewArtifact extends JFrame {
 
     private class SortDateListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            Collections.sort(alist, new sortDate());
+            alist.sort(new sortDate());
             model.setRowCount(0);
             showTable(alist);
         }
@@ -222,9 +225,16 @@ public class ViewArtifact extends JFrame {
 
     private class Sortbyweight implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            Collections.sort(alist, new sortWeight());
+            alist.sort(new sortWeight());
             model.setRowCount(0);
             showTable(alist);
+        }
+    }
+
+    private static class exportResultsListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
         }
     }
 
@@ -240,16 +250,14 @@ public class ViewArtifact extends JFrame {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             Date d_1 = new Date();
             try {
-                Date a1Date = df.parse(a1.getArrivalDate());
-                d_1 = a1Date;
+                d_1 = df.parse(a1.getArrivalDate());
             } catch (ParseException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             Date d_2 = new Date();
             try {
-                Date a2Date = df.parse(a2.getArrivalDate());
-                d_2 = a2Date;
+                d_2 = df.parse(a2.getArrivalDate());
             } catch (ParseException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -258,8 +266,10 @@ public class ViewArtifact extends JFrame {
         }
     }
 
+
+
     // sorts the records by balance
-    private class sortPrice implements Comparator<Artifact> {
+    private static class sortPrice implements Comparator<Artifact> {
         public int compare(Artifact a1, Artifact a2) {
             // this function sorts in ascending order
             if (a1.getPrice() > a2.getPrice())
@@ -273,7 +283,7 @@ public class ViewArtifact extends JFrame {
     }
 
     // sorts the records by balance
-    private class sortWeight implements Comparator<Artifact> {
+    private static class sortWeight implements Comparator<Artifact> {
         public int compare(Artifact a1, Artifact a2) {
             // this function sorts in ascending order
             if (a1.getWeight() > a2.getWeight())
@@ -304,10 +314,10 @@ public class ViewArtifact extends JFrame {
 
             if (range0to20.isSelected()) {
                 // Iterate through the original list and filter based on checkbox selections
-                for (int x = 0; x < alist.size(); x++) {
+                for (Artifact artifact : alist) {
 
-                    if (alist.get(x).getWeight() >= 0.00 && alist.get(x).getWeight() <= 20.00) {
-                        filteredList.add(alist.get(x));
+                    if (artifact.getWeight() >= 0.00 && artifact.getWeight() <= 20.00) {
+                        filteredList.add(artifact);
                     }
 
                 }
@@ -333,10 +343,10 @@ public class ViewArtifact extends JFrame {
 
             if (range20to100.isSelected()) {
                 // Iterate through the original list and filter based on checkbox selections
-                for (int x = 0; x < alist.size(); x++) {
+                for (Artifact artifact : alist) {
 
-                    if (alist.get(x).getWeight() >= 0.00 && alist.get(x).getWeight() <= 20.00) {
-                        filteredList.add(alist.get(x));
+                    if (artifact.getWeight() >= 0.00 && artifact.getWeight() <= 20.00) {
+                        filteredList.add(artifact);
                     }
 
                 }
@@ -361,10 +371,10 @@ public class ViewArtifact extends JFrame {
 
             if (rangeabove100.isSelected()) {
                 // Iterate through the original list and filter based on checkbox selections
-                for (int x = 0; x < alist.size(); x++) {
+                for (Artifact artifact : alist) {
 
-                    if (alist.get(x).getWeight() >= 0.00 && alist.get(x).getWeight() <= 20.00) {
-                        filteredList.add(alist.get(x));
+                    if (artifact.getWeight() >= 0.00 && artifact.getWeight() <= 20.00) {
+                        filteredList.add(artifact);
                     }
 
                 }
@@ -390,10 +400,10 @@ public class ViewArtifact extends JFrame {
 
             if (range1.isSelected()) {
                 // Iterate through the original list and filter based on checkbox selections
-                for (int x = 0; x < alist.size(); x++) {
+                for (Artifact artifact : alist) {
 
-                    if (alist.get(x).getPrice() >= 0.00 && alist.get(x).getPrice() <= 100000.00) {
-                        filteredList.add(alist.get(x));
+                    if (artifact.getPrice() >= 0.00 && artifact.getPrice() <= 100000.00) {
+                        filteredList.add(artifact);
                     }
 
                 }
@@ -419,10 +429,10 @@ public class ViewArtifact extends JFrame {
 
             if (range2.isSelected()) {
                 // Iterate through the original list and filter based on checkbox selections
-                for (int x = 0; x < alist.size(); x++) {
+                for (Artifact artifact : alist) {
 
-                    if (alist.get(x).getPrice() > 100000.00 && alist.get(x).getPrice() <= 1000000.00) {
-                        filteredList.add(alist.get(x));
+                    if (artifact.getPrice() > 100000.00 && artifact.getPrice() <= 1000000.00) {
+                        filteredList.add(artifact);
                     }
 
                 }
@@ -447,10 +457,10 @@ public class ViewArtifact extends JFrame {
 
             if (range3.isSelected()) {
                 // Iterate through the original list and filter based on checkbox selections
-                for (int x = 0; x < alist.size(); x++) {
+                for (Artifact artifact : alist) {
 
-                    if (alist.get(x).getPrice() > 1000000.00) {
-                        filteredList.add(alist.get(x));
+                    if (artifact.getPrice() > 1000000.00) {
+                        filteredList.add(artifact);
                     }
 
                 }
