@@ -69,7 +69,7 @@ public class DeleteArtifact extends JFrame {
                     model.removeRow(table.getSelectedRow());
                     JOptionPane.showMessageDialog(null, "Selected record deleted successfully!");
                     remove(alist);
-                    new EmployeeMenu();
+                    new CuratorMenu();
                 }
             }
         });
@@ -77,7 +77,7 @@ public class DeleteArtifact extends JFrame {
         close.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new EmployeeMenu();
+                new CuratorMenu();
             }
         });
 

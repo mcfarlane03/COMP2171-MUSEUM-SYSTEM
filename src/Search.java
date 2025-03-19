@@ -178,7 +178,7 @@ public class Search extends JFrame {
     private class CloseButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
-            new EmployeeMenu();
+            new CuratorMenu();
         }
     }
 }

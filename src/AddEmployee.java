@@ -43,7 +43,7 @@ public class AddEmployee extends JFrame {
         dispanel.add(new JLabel("Enter your ID#: "));
         dispanel.add(ID);
 
-        dispanel.add(new JLabel("Enter your role [Manager/Entry Level Employee]: "));
+        dispanel.add(new JLabel("Enter your role [Manager/Curator]: "));
         dispanel.add(role);
 
         // start of gender panel

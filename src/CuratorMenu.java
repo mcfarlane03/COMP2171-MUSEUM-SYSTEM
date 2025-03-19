@@ -4,13 +4,13 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-class EmployeeMenu extends JFrame {
+class CuratorMenu extends JFrame {
 
-   public EmployeeMenu() {
+   public CuratorMenu() {
       // JFrame frame = new JFrame();
 
       JMenuBar menuBar = new JMenuBar(); // create menu bar
-      JMenu menu = new JMenu("Welcome to the Employee Menu"); // create menu
+      JMenu menu = new JMenu("Welcome to the Curator Menu"); // create menu
 
       JMenuItem View_A = new JMenuItem("View Museum Artifact List");
       menu.add(View_A);

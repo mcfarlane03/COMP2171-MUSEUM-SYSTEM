@@ -65,7 +65,7 @@ public class AddArtifactUI extends JFrame {
         close.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new EmployeeMenu();
+                new CuratorMenu();
             }
         });
 
@@ -128,7 +128,7 @@ public class AddArtifactUI extends JFrame {
 
         }
         setVisible(false);
-        new EmployeeMenu();
+        new CuratorMenu();
 
     }
     }

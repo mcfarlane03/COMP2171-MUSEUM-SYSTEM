@@ -31,7 +31,7 @@ public class EmployeeLogin extends JFrame {
 
     public EmployeeLogin() {
         setLocationRelativeTo(null);
-        setTitle("Museum Employee Login");
+        setTitle("Museum Curator Login");
         dpanel.add(new JLabel("Employee ID: "));
         dpanel.add(ID);
 
@@ -118,8 +118,8 @@ public class EmployeeLogin extends JFrame {
                                 flag = 0;
                                 manager_flag = true;
                             }
-                            if (loginStr[1].equals("Entry_Level_Employee") && check == Id && loginStr[4].equals(userHashHex)) {
-                                new EmployeeMenu();
+                            if (loginStr[1].equals("Curator") && check == Id && loginStr[4].equals(userHashHex)) {
+                                new CuratorMenu();
                                 // System.out.println("SUCCESSFUL EMPLOYEE");
                                 JOptionPane.showMessageDialog(null, "User with ID#: [" + loginStr[3] + "] logged in");
                                 setVisible(false);

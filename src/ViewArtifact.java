@@ -302,7 +302,7 @@ public class ViewArtifact extends JFrame {
             if (EmployeeLogin.managerFlag())
                 new ManagerMenu();
             else
-                new EmployeeMenu();
+                new CuratorMenu();
         }
     }
 

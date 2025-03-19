@@ -16,7 +16,7 @@ class ManagerMenu extends JFrame {
       menu.add(view);
 
 
-      JMenuItem add = new JMenuItem("Add an Entry Employee");
+      JMenuItem add = new JMenuItem("Add a Curator");
       menu.add(add);
 
       JMenuItem logout = new JMenuItem("LOGOUT");
