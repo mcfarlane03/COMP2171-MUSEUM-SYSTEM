@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "InventoryManagement",
+            "request": "launch",
+            "mainClass": "InventoryManagement",
+            "projectName": "COMP2140_Software_Project_6ab54ea3"
+        },
+        {
+            "type": "java",
+            "name": "InventoryManagement",
+            "request": "launch",
+            "mainClass": "InventoryManagement",
+            "projectName": "COMP2140_Software_Project_35e34c7e"
+        }
+    ]
+}
