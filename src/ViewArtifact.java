@@ -55,6 +55,14 @@ public class ViewArtifact extends JFrame {
     public JCheckBox range2 = new JCheckBox("100000 - 1000000 ");
     public JCheckBox range3 = new JCheckBox(">1000000");
 
+    // Create class-level variables to track selected filters
+    private boolean weight0to20Selected = false;
+    private boolean weight20to100Selected = false;
+    private boolean weightAbove100Selected = false;
+    private boolean price0to100kSelected = false;
+    private boolean price100kto1mSelected = false;
+    private boolean priceAbove1mSelected = false;
+
     public ViewArtifact() {
         setTitle("Artifact View");
         setSize(400, 300);
@@ -194,7 +202,6 @@ public class ViewArtifact extends JFrame {
         String[] item = { a.getName(), "" + a.getID(), "" + a.getDescription(), "" + a.getStatus(), "" + a.getWeight(),
                 "" + a.getPrice(), "" + a.getArrivalDate() };
         model.addRow(item);
-
     }
 
     // listener for balance sort button
@@ -266,8 +273,6 @@ public class ViewArtifact extends JFrame {
         }
     }
 
-
-
     // sorts the records by balance
     private static class sortPrice implements Comparator<Artifact> {
         public int compare(Artifact a1, Artifact a2) {
@@ -306,185 +311,143 @@ public class ViewArtifact extends JFrame {
         }
     }
 
+    // New implementation of filter listeners that track states
     private class FilterListener1 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // Create a new list to store the filtered artifacts
-
-            ArrayList<Artifact> filteredList = new ArrayList<>();
-
-            if (range0to20.isSelected()) {
-                // Iterate through the original list and filter based on checkbox selections
-                for (Artifact artifact : alist) {
-
-                    if (artifact.getWeight() >= 0.00 && artifact.getWeight() <= 20.00) {
-                        filteredList.add(artifact);
-                    }
-
-                }
-                model.setRowCount(0);
-
-                // Clear the table model
-
-                // Populate the table model with the filtered data
-                showTable(filteredList);
-                alist = filteredList;
-            } else {
-                model.setRowCount(0);
-                showTable(alist2);
-            }
-
+            weight0to20Selected = range0to20.isSelected();
+            applyAllFilters();
         }
     }
 
     private class FilterListener2 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // Create a new list to store the filtered artifacts
-            ArrayList<Artifact> filteredList = new ArrayList<>();
-
-            if (range20to100.isSelected()) {
-                // Iterate through the original list and filter based on checkbox selections
-                for (Artifact artifact : alist) {
-
-                    if (artifact.getWeight() >= 0.00 && artifact.getWeight() <= 20.00) {
-                        filteredList.add(artifact);
-                    }
-
-                }
-                model.setRowCount(0);
-
-                // Clear the table model
-
-                // Populate the table model with the filtered data
-                showTable(filteredList);
-                alist = filteredList;
-            } else {
-                model.setRowCount(0);
-                showTable(alist2);
-            }
+            weight20to100Selected = range20to100.isSelected();
+            applyAllFilters();
         }
     }
 
     private class FilterListener3 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // Create a new list to store the filtered artifacts
-            ArrayList<Artifact> filteredList = new ArrayList<>();
-
-            if (rangeabove100.isSelected()) {
-                // Iterate through the original list and filter based on checkbox selections
-                for (Artifact artifact : alist) {
-
-                    if (artifact.getWeight() >= 0.00 && artifact.getWeight() <= 20.00) {
-                        filteredList.add(artifact);
-                    }
-
-                }
-                model.setRowCount(0);
-
-                // Clear the table model
-
-                // Populate the table model with the filtered data
-                showTable(filteredList);
-                alist = filteredList;
-            } else {
-                model.setRowCount(0);
-                showTable(alist2);
-            }
+            weightAbove100Selected = rangeabove100.isSelected();
+            applyAllFilters();
         }
     }
 
     private class PriceListener1 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // Create a new list to store the filtered artifacts
-
-            ArrayList<Artifact> filteredList = new ArrayList<>();
-
-            if (range1.isSelected()) {
-                // Iterate through the original list and filter based on checkbox selections
-                for (Artifact artifact : alist) {
-
-                    if (artifact.getPrice() >= 0.00 && artifact.getPrice() <= 100000.00) {
-                        filteredList.add(artifact);
-                    }
-
-                }
-                model.setRowCount(0);
-
-                // Clear the table model
-
-                // Populate the table model with the filtered data
-                showTable(filteredList);
-                alist = filteredList;
-            } else {
-                model.setRowCount(0);
-                showTable(alist2);
-            }
-
+            price0to100kSelected = range1.isSelected();
+            applyAllFilters();
         }
     }
 
     private class PriceListener2 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // Create a new list to store the filtered artifacts
-            ArrayList<Artifact> filteredList = new ArrayList<>();
-
-            if (range2.isSelected()) {
-                // Iterate through the original list and filter based on checkbox selections
-                for (Artifact artifact : alist) {
-
-                    if (artifact.getPrice() > 100000.00 && artifact.getPrice() <= 1000000.00) {
-                        filteredList.add(artifact);
-                    }
-
-                }
-                model.setRowCount(0);
-
-                // Clear the table model
-
-                // Populate the table model with the filtered data
-                showTable(filteredList);
-                alist = filteredList;
-            } else {
-                model.setRowCount(0);
-                showTable(alist2);
-            }
+            price100kto1mSelected = range2.isSelected();
+            applyAllFilters();
         }
     }
 
     private class PriceListener3 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // Create a new list to store the filtered artifacts
-            ArrayList<Artifact> filteredList = new ArrayList<>();
-
-            if (range3.isSelected()) {
-                // Iterate through the original list and filter based on checkbox selections
-                for (Artifact artifact : alist) {
-
-                    if (artifact.getPrice() > 1000000.00) {
-                        filteredList.add(artifact);
-                    }
-
-                }
-                model.setRowCount(0);
-
-                // Clear the table model
-
-                // Populate the table model with the filtered data
-                showTable(filteredList);
-                alist = filteredList;
-            } else {
-                model.setRowCount(0);
-                showTable(alist2);
-            }
+            priceAbove1mSelected = range3.isSelected();
+            applyAllFilters();
         }
     }
 
+    // New common method to apply all selected filters at once
+    private void applyAllFilters() {
+        // Start with the original full list
+        ArrayList<Artifact> filteredList = new ArrayList<>(alist2);
+
+        // If any weight filters are selected, apply weight filtering
+        if (weight0to20Selected || weight20to100Selected || weightAbove100Selected) {
+            ArrayList<Artifact> weightFiltered = new ArrayList<>();
+
+            for (Artifact artifact : filteredList) {
+                boolean includeArtifact = false;
+
+                if (weight0to20Selected && artifact.getWeight() >= 0.00 && artifact.getWeight() <= 20.00) {
+                    includeArtifact = true;
+                }
+
+                if (weight20to100Selected && artifact.getWeight() > 20.00 && artifact.getWeight() <= 100.00) {
+                    includeArtifact = true;
+                }
+
+                if (weightAbove100Selected && artifact.getWeight() > 100.00) {
+                    includeArtifact = true;
+                }
+
+                if (includeArtifact) {
+                    weightFiltered.add(artifact);
+                }
+            }
+
+            filteredList = weightFiltered;
+        }
+
+        // If any price filters are selected, apply price filtering to the already filtered list
+        if (price0to100kSelected || price100kto1mSelected || priceAbove1mSelected) {
+            ArrayList<Artifact> priceFiltered = new ArrayList<>();
+
+            for (Artifact artifact : filteredList) {
+                boolean includeArtifact = false;
+
+                if (price0to100kSelected && artifact.getPrice() >= 0.00 && artifact.getPrice() <= 100000.00) {
+                    includeArtifact = true;
+                }
+
+                if (price100kto1mSelected && artifact.getPrice() > 100000.00 && artifact.getPrice() <= 1000000.00) {
+                    includeArtifact = true;
+                }
+
+                if (priceAbove1mSelected && artifact.getPrice() > 1000000.00) {
+                    includeArtifact = true;
+                }
+
+                if (includeArtifact) {
+                    priceFiltered.add(artifact);
+                }
+            }
+
+            filteredList = priceFiltered;
+        }
+
+        // If no filters are selected, show all artifacts
+        if (!weight0to20Selected && !weight20to100Selected && !weightAbove100Selected &&
+                !price0to100kSelected && !price100kto1mSelected && !priceAbove1mSelected) {
+            filteredList = alist2;
+        }
+
+        // Update the display with filtered results
+        model.setRowCount(0);
+        showTable(filteredList);
+        alist = filteredList;
+    }
+
+    // Updated Reset listener to reset all filter states
     private class ResetListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            alist = alist2;
+            // Reset all filter checkboxes
+            range0to20.setSelected(false);
+            range20to100.setSelected(false);
+            rangeabove100.setSelected(false);
+            range1.setSelected(false);
+            range2.setSelected(false);
+            range3.setSelected(false);
 
+            // Reset filter state variables
+            weight0to20Selected = false;
+            weight20to100Selected = false;
+            weightAbove100Selected = false;
+            price0to100kSelected = false;
+            price100kto1mSelected = false;
+            priceAbove1mSelected = false;
+
+            // Reset the list and update the display
+            alist = alist2;
             model.setRowCount(0);
             showTable(alist);
         }
-
     }
 }

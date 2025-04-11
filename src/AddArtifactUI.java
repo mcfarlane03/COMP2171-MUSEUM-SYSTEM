@@ -22,7 +22,6 @@ public class AddArtifactUI extends JFrame {
 
     private JButton close = new JButton("Close");
     private JButton save = new JButton("Save Artifact");
-    private JButton update = new JButton("Update Artifact");
 
     public AddArtifactUI() {
         // setTitle("Add a New Artifact");
@@ -86,17 +85,9 @@ public class AddArtifactUI extends JFrame {
         close.setBackground(Color.darkGray); // for the background
         close.setForeground(Color.white); // for the text
 
-        update.setOpaque(true);
-        update.setContentAreaFilled(true);
-        update.setBorderPainted(false);
-        update.setFocusPainted(false);
-        update.setBackground(Color.darkGray); // for the background
-        update.setForeground(Color.white); // for the text
-
         // command buttons panel:
         com_panel.add(save);
         com_panel.add(close);
-        com_panel.add(update);
 
         dis_panel.add(status_panel);
 

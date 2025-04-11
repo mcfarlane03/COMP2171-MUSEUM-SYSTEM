@@ -15,20 +15,17 @@ class CuratorMenu extends JFrame {
       JMenuItem View_A = new JMenuItem("View Museum Artifact List");
       menu.add(View_A);
 
-
-
       JMenuItem Add_A = new JMenuItem("Add an Artifact");
       menu.add(Add_A);
 
       JMenuItem Search = new JMenuItem("Search Artifacts");
       menu.add(Search);
 
-
+      JMenuItem Edit_A = new JMenuItem("Edit Artifact");
+      menu.add(Edit_A);
 
       JMenuItem Delete_A = new JMenuItem("Delete Artifacts");
       menu.add(Delete_A);
-
-
 
       JMenuItem logout = new JMenuItem("Log Out");
       menu.add(logout);
@@ -77,6 +74,13 @@ class CuratorMenu extends JFrame {
          public void actionPerformed(ActionEvent e) {
             setVisible(false);
             new EmployeeLogin();
+         }
+      });
+
+      Edit_A.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            setVisible(false);
+            new EditArtifact();
          }
       });
    }
