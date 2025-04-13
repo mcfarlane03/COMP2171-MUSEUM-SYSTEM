@@ -2,6 +2,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EditArtifact",
+            "request": "launch",
+            "mainClass": "EditArtifact",
+            "projectName": "COMP2171-MUSEUM-SYSTEM_5e7c70ec"
+        },
+        {
+            "type": "java",
+            "name": "CuratorMenu",
+            "request": "launch",
+            "mainClass": "CuratorMenu",
+            "projectName": "COMP2171-MUSEUM-SYSTEM_5e7c70ec"
+        },
+        {
+            "type": "java",
+            "name": "TestDatabaseConnection",
+            "request": "launch",
+            "mainClass": "TestDatabaseConnection",
+            "projectName": "COMP2171-MUSEUM-SYSTEM_5e7c70ec"
+        },
+        {
+            "type": "java",
+            "name": "InventoryManagement",
+            "request": "launch",
+            "mainClass": "InventoryManagement",
+            "projectName": "COMP2171-MUSEUM-SYSTEM_5e7c70ec"
+        },
+        {
+            "type": "java",
             "name": "InventoryManagement",
             "request": "launch",
             "mainClass": "InventoryManagement",

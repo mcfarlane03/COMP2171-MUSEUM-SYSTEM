@@ -1,4 +1,3 @@
-
 public class Artifact {
     private String name;
     private String Description;
@@ -11,11 +10,11 @@ public class Artifact {
     public Artifact() {
     } // default constructor
 
-    public Artifact(String name, int ID, String Description, String status, double weight, double price,
+    public Artifact(int ID, String name, String Description, String status, double weight, double price,
             String arrivalDate) {
+        this.ID = ID;
         this.name = name;
         this.Description = Description;
-        this.ID = ID;
         this.status = status;
         this.price = price;
         this.weight = weight;

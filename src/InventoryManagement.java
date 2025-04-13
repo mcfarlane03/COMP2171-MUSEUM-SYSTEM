@@ -84,6 +84,16 @@ public class InventoryManagement extends JFrame {
     }
 
     public static void main(String[] args) {
-        new InventoryManagement();
+        // Set look and feel
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // Initialize the database
+        DatabaseConnection.initializeDatabase();
+        
+        SwingUtilities.invokeLater(() -> new InventoryManagement());
     }
 }
