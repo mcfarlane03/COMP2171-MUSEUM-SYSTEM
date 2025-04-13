@@ -1,149 +1,161 @@
 import java.awt.*;
+import java.io.File;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.security.MessageDigest;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.BufferedReader;
 import java.nio.charset.Charset;
+import java.awt.event.ActionEvent;
+import java.security.MessageDigest;
+import java.awt.event.ActionListener;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 
+
+
 public class EmployeeLogin extends JFrame {
-    private JPanel mainPanel = new JPanel();
-    private JPanel buttonPanel = new JPanel();
-    
-    private JTextField idField = new JTextField(15);
-    private JPasswordField passwordField = new JPasswordField(15);
-    
-    private JButton loginButton;
-    private JButton registerButton;
-    private JButton backButton;
-    
+    private JPanel dpanel = new JPanel(new GridLayout(3, 1));
+    private JPanel bpanel = new JPanel();
+    private JButton login;
+    private JButton create;
+    private JButton back;
+
+    private JTextField ID = new JTextField(15);
+    private JPasswordField pwd = new JPasswordField(15);
+
     private static final String HASH_ALGORITHM = "SHA-256";
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
-    
+
+    // "global manager_flag" variable:
     public static boolean manager_flag = false;
 
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
-    
-    public EmployeeLogin() {   
-        setTitle("Employee Login");
-        setSize(350, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public EmployeeLogin() {
         setLocationRelativeTo(null);
-        
-        mainPanel.setLayout(new GridLayout(3, 2, 10, 10));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        
-        // Add components to the main panel
-        mainPanel.add(new JLabel("Employee ID:"));
-        mainPanel.add(idField);
-        
-        mainPanel.add(new JLabel("Password:"));
-        mainPanel.add(passwordField);
-        
-        // Create buttons
-        backButton = new JButton("<--");
-        loginButton = new JButton("Login");
-        registerButton = new JButton("Register New Employee");
-        
-        // Style the buttons
-        backButton.setOpaque(true);
-        backButton.setContentAreaFilled(true);
-        backButton.setBorderPainted(false);
-        backButton.setFocusPainted(false);
-        backButton.setBackground(Color.darkGray); // for the background
-        backButton.setForeground(Color.white); // for the text
+        setTitle("Museum Curator Login");
+        dpanel.add(new JLabel("Employee ID: "));
+        dpanel.add(ID);
 
-        loginButton.setBackground(Color.darkGray);
-        loginButton.setForeground(Color.white);
-        loginButton.setOpaque(true);
-        loginButton.setContentAreaFilled(true);
-        loginButton.setBorderPainted(false);
-        loginButton.setFocusPainted(false);
-        
-        registerButton.setBackground(Color.darkGray);
-        registerButton.setForeground(Color.white);
-        registerButton.setOpaque(true);
-        registerButton.setContentAreaFilled(true);
-        registerButton.setBorderPainted(false);
-        registerButton.setFocusPainted(false);
-        
-        // Add buttons to button panel
-        buttonPanel.setLayout(new FlowLayout());
-        buttonPanel.add(backButton);
-        buttonPanel.add(loginButton);
-        buttonPanel.add(registerButton);
-        
-        // Add action listeners
-        backButton.addActionListener(new ActionListener() {
+        dpanel.add(new JLabel("Password: "));
+        dpanel.add(pwd);
+
+        // action buttons:
+        back = new JButton("<--");
+        login = new JButton("Login");
+        create = new JButton("Create User");
+
+        // adding buttons to panel:
+        back.setOpaque(true);
+        back.setContentAreaFilled(true);
+        back.setBorderPainted(false);
+        back.setFocusPainted(false);
+        back.setBackground(Color.darkGray); // for the background
+        back.setForeground(Color.white); // for the text
+
+        login.setOpaque(true);
+        login.setContentAreaFilled(true);
+        login.setBorderPainted(false);
+        login.setFocusPainted(false);
+        login.setBackground(Color.darkGray); // for the background
+        login.setForeground(Color.white); // for the text
+
+        create.setOpaque(true);
+        create.setContentAreaFilled(true);
+        create.setBorderPainted(false);
+        create.setFocusPainted(false);
+        create.setBackground(Color.darkGray); // for the background
+        create.setForeground(Color.white); // for the text
+
+        bpanel.setLayout(new FlowLayout());
+        bpanel.add(back);
+        bpanel.add(login);
+        bpanel.add(create);
+
+        // button listeners:
+        back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new InventoryManagement();
                 setVisible(false);
             }
         });
-        
-        loginButton.addActionListener(new ActionListener() {
-            @Override
+
+        login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                attemptLogin();
+                // handles case where username and password field is empty. will give an error
+                // message to user:
+                if ((!ID.getText().isEmpty()) && pwd.getPassword().length > 0) {
+                    int Id = Integer.parseInt(ID.getText());
+                    String password = new String(pwd.getPassword());
+                    byte[] userHash = hashPassword(password);
+                    String userHashHex = bytesToHex(userHash);
+                    int flag = -1;
+                    String line;
+                    try {
+                        // Create a File object with the given file name:
+                        File file = new File("employee_details.txt");
+
+                        // Check if the file exists:
+                        if (!file.exists())
+                            JOptionPane.showMessageDialog(null,
+                                    "No user account has been created yet. Please create a user");
+
+                        // Create a FileReader object to read from the file:
+                        FileReader fileReader = new FileReader(file);
+
+                        // Create a BufferedReader object to read text from the FileReader:
+                        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                        // loops through file
+                        while ((line = bufferedReader.readLine()) != null) {
+                            String[] loginStr = line.split(" ");
+                            int check = Integer.parseInt(loginStr[3]);
+                            // Compares fields from text to fields from JText & PasswordFields:
+                            if (loginStr[1].equals("Manager") && check == Id && loginStr[4].equals(userHashHex)) {
+                                new ManagerMenu();
+                                JOptionPane.showMessageDialog(null, "User with ID#: [" + loginStr[3] + "] logged in");
+                                // System.out.println("SUCCESSFUL MANAGER");
+                                setVisible(false);
+                                bufferedReader.close();
+                                flag = 0;
+                                manager_flag = true;
+                            }
+                            if (loginStr[1].equals("Curator") && check == Id && loginStr[4].equals(userHashHex)) {
+                                new CuratorMenu();
+                                // System.out.println("SUCCESSFUL EMPLOYEE");
+                                JOptionPane.showMessageDialog(null, "User with ID#: [" + loginStr[3] + "] logged in");
+                                setVisible(false);
+                                bufferedReader.close();
+                                flag = 0;
+                            }
+                        }
+                        // handles case where uname or pwd is wrong:
+                        if (flag == -1)
+                            JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again!");
+                        bufferedReader.close();
+                        fileReader.close();
+                    } catch (IOException IOE) {
+                    }
+                    // catch (InterruptedException IE) {IE.printStackTrace();}
+                }
+                // error message for null input:
+                else
+                    JOptionPane.showMessageDialog(null, "Null input detected. Please enter valid characters.");
             }
         });
-        
-        registerButton.addActionListener(new ActionListener() {
-            @Override
+
+        create.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
                 new AddEmployee();
+                setVisible(false);
             }
         });
-        
-        // Add panels to frame
-        add(mainPanel, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
-        
+
+        // adding panels to frame:
+        add(dpanel, BorderLayout.NORTH);
+        add(bpanel, BorderLayout.SOUTH);
+        pack();
         setVisible(true);
     }
-    
-    private void attemptLogin() {
-        try {
-            String idText = idField.getText().trim();
-            String password = new String(passwordField.getPassword());
-            
-            if (idText.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please enter both ID and password");
-                return;
-            }
-            
-            int id = Integer.parseInt(idText);
-            String passwordHash = bytesToHex(hashPassword(password));
-            
-            if (employeeDAO.verifyCredentials(id, passwordHash)) {
-                JOptionPane.showMessageDialog(this, "Login successful!");
-                
-                // Get the employee details
-                BaseStaff employee = employeeDAO.getEmployeeById(id);
-                
-                // Navigate to the appropriate menu based on role
-                setVisible(false);
-                if (employee.isManager()) {
-                    manager_flag = true;
-                    new ManagerMenu();
-                } else {
-                    new CuratorMenu();
-                }
-                
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid ID or password");
-            }
-            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid numeric ID");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    
+
     private static byte[] hashPassword(String password) {
         Charset charset = StandardCharsets.UTF_8;
         MessageDigest md;
@@ -155,7 +167,7 @@ public class EmployeeLogin extends JFrame {
         byte[] passwordBytes = password.getBytes(charset);
         return md.digest(passwordBytes);
     }
-    
+
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         for (int i = 0; i < bytes.length; i++) {
