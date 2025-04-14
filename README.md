@@ -21,10 +21,6 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 
 ## STEPS TO GET PROJECT RUNNINIG:
-1. You need to create a database called `museum_db` in your database software of choice on your machine.
+1. Run the application from either the jar file or compile it from the InventoryManagement class which is the driver class.
 
-2. In the 'DatabaseConnection.java' file in the src folder, setup your database connection variables, i.e. `USER` and `PASSWORD`.
-
-3. Proceed to run the application from either the jar file or compile it from the InventoryManagement class which is the driver class.
-
-4. If you want to test that the database connection is working properly, you can run the `TestDatabaseConnection.java` class and look in the terminal to see the message. If you have set up the project correctly you should see: 'Database connection successful!'
+2. If you want to test that the database connection is working properly, you can run the `TestDatabaseConnection.java` class and look in the terminal to see the message. If you have set up the project correctly you should see: 'Database connection successful!'

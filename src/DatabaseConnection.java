@@ -1,9 +1,10 @@
 import java.sql.*;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/museum_db";
-    private static final String USER = "change-to-your-user ";
-    private static final String PASSWORD = "change-to-your-password";
+    // private static final String URL = "jdbc:mysql://localhost:3306/museum_db";
+    private static final String URL = "jdbc:mariadb://129.158.207.171:3306/museum_db";
+    private static final String USER = "remoteuser";
+    private static final String PASSWORD = "#59gq$L43BBa9E";
     
     private static Connection connection = null;
     
@@ -15,13 +16,14 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                // Load the MySQL JDBC driver
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                
+                // Load the JDBC driver
+                // Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("org.mariadb.jdbc.Driver");
+
                 // Create the connection
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
             } catch (ClassNotFoundException e) {
-                throw new SQLException("MySQL JDBC Driver not found", e);
+                throw new SQLException("MariaDB JDBC Driver not found", e);
             }
         }
         return connection;
