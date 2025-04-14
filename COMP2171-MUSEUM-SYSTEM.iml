@@ -2,51 +2,50 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+    <dependencies>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>kernel</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>io</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>layout</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>forms</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>pdfa</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>pdftest</artifactId>
+        <version>7.0.4</version>
+      </dependency>
+    </dependencies>
+    <repositories>
+      <repository>
+        <id>itext</id>
+        <name>iText Repository - releases</name>
+        <url>https://repo.itextsupport.com/releases</url>
+      </repository>
+    </repositories>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-
-    <dependencies>
-            <dependency>
-                <groupId>com.itextpdf</groupId>
-                <artifactId>kernel</artifactId>
-                <version>7.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.itextpdf</groupId>
-                <artifactId>io</artifactId>
-                <version>7.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.itextpdf</groupId>
-                <artifactId>layout</artifactId>
-                <version>7.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.itextpdf</groupId>
-                <artifactId>forms</artifactId>
-                <version>7.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.itextpdf</groupId>
-                <artifactId>pdfa</artifactId>
-                <version>7.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.itextpdf</groupId>
-                <artifactId>pdftest</artifactId>
-                <version>7.0.4</version>
-            </dependency>
-        </dependencies>
-        <repositories>
-            <repository>
-                <id>itext</id>
-                <name>iText Repository - releases</name>
-                <url>https://repo.itextsupport.com/releases</url>
-            </repository>
-        </repositories>
+    <orderEntry type="library" name="mariadb-java-client-3.5.3" level="project" />
   </component>
-
 </module>

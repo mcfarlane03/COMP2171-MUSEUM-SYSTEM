@@ -133,7 +133,7 @@ class CuratorMenu extends JFrame {
         
         // Add action listeners
         viewButton.addActionListener(e -> {
-            new ViewArtifact();
+            new ViewArtifact(false);
             setVisible(false);
         });
         

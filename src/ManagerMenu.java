@@ -116,7 +116,7 @@ class ManagerMenu extends JFrame {
         // Adding action listeners to buttons
         viewArtifactsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ViewArtifact();
+                new ViewArtifact(true);
                 setVisible(false);
                 dispose();
             }

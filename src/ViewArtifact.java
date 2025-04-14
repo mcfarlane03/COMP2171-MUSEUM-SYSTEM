@@ -70,11 +70,15 @@ public class ViewArtifact extends JFrame {
     private boolean price0to100kSelected = false;
     private boolean price100kto1mSelected = false;
     private boolean priceAbove1mSelected = false;
+
+    private boolean role;
     
     private EmployeeDAO employeeDAO = new EmployeeDAO();
 
-    public ViewArtifact() {
+    public ViewArtifact(boolean role) {
         // Basic frame setup
+        this.role = role;
+
         setTitle("Artifact Catalogue Viewer");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setMinimumSize(new Dimension(1000, 600));
@@ -513,7 +517,7 @@ public class ViewArtifact extends JFrame {
             // new ManagerMenu();
 
             // Navigate to the appropriate menu based on role
-            if (EmployeeLogin.managerFlag())
+            if (role)
                 new ManagerMenu();
             else
                 new CuratorMenu();
